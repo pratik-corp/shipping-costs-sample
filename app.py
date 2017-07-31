@@ -11,6 +11,14 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
+@application.route('/run_post')
+def run_post():
+    url = 'https://lit-escarpment-60715.herokuapp.com/webhook'
+    data = {'result': {'action': 'shipping.cost' 'parameters': { 'shipping-zone': 'Europe'}}}
+    headers = {'Content-Type' : 'application/json'}
+
+    r = requests.post(url, data=json.dumps(data), headers=headers)
+    return r.text
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -53,6 +61,6 @@ def makeWebhookResult(req):
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
-    print "Starting app on port %d" % port
+   # print "Starting app on port %d" % port
 
     app.run(debug=True, port=port, host='0.0.0.0')

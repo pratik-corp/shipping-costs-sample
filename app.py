@@ -11,7 +11,11 @@ from flask import make_response
 # Flask app should start in global layout
 app = Flask(__name__)
 
-@application.route('/run_post')
+@app.route('/', methods=['GET'])
+def homepage():
+    return "You've reached the demo server."
+
+@app.route('/run_post')
 def run_post():
     url = 'https://lit-escarpment-60715.herokuapp.com/webhook'
     data = {'result': {'action': 'shipping.cost', 'parameters': { 'shipping-zone': 'Europe'}}}

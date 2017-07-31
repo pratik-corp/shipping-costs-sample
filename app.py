@@ -14,7 +14,7 @@ app = Flask(__name__)
 @application.route('/run_post')
 def run_post():
     url = 'https://lit-escarpment-60715.herokuapp.com/webhook'
-    data = {'result': {'action': 'shipping.cost' 'parameters': { 'shipping-zone': 'Europe'}}}
+    data = {'result': {'action': 'shipping.cost', 'parameters': { 'shipping-zone': 'Europe'}}}
     headers = {'Content-Type' : 'application/json'}
 
     r = requests.post(url, data=json.dumps(data), headers=headers)

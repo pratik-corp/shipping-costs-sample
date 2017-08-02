@@ -64,21 +64,25 @@ def handleTestIntent(req):
     return {
         "data": {
             "google": {
+                "isSsml": false,,
                 "systemIntent": {
                     "intent": "actions.intent.OPTION",
                     "data": {
                         "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
                         "listSelect": {
+                            "title": "List title"
                             "items": [
                                 {
                                     "optionInfo": {
                                         "key": "cat"
-                                    }
+                                    },
+                                    "title": "cat"
                                 },
                                 {
                                     "optionInfo": {
-                                        "key": "elephant"
-                                    }
+                                        "key": "dog"
+                                    },
+                                    "title": "dog"
                                 }
                             ]
                         }

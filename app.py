@@ -91,7 +91,7 @@ def handleTestIntent(req):
                     "items": [
                         {
                             "simpleResponse": {
-                                "textToSpeech": "Please select an animal."
+                                "textToSpeech": "Please select an animal.",
                                 "dislaytext": "Please select an animal."
                             }
                         }

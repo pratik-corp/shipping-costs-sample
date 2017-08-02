@@ -64,7 +64,6 @@ def handleTestIntent(req):
     return {
         "data": {
             "google": {
-                "isSsml": false,
                 "systemIntent": {
                     "intent": "actions.intent.OPTION",
                     "data": {

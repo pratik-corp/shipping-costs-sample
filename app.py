@@ -93,9 +93,9 @@ def handleTestIntent(req):
 def makeWebhookResult(req):
     if req.get("result").get("action") == "shipping.cost":
         return handleShippingRequest(req)
-    else if req.get("result").get("action") == "test_intent":
+    elif req.get("result").get("action") == "test_intent":
         return handleTestIntent(req)
-    else    
+    else:    
         print("result action:")
         print(req.get("result").get("action"))
         return {

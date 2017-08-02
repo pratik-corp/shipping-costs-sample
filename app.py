@@ -99,7 +99,7 @@ def handleTestIntent(req):
                 }
             }
         },
-        # "contextOut": [],
+        "contextOut": [{"name":"animal_sound", "lifespan":2}],
         "source": "apiai-test_input",
     }
 

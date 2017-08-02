@@ -70,7 +70,7 @@ def handleTestIntent(req):
                     "data": {
                         "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec",
                         "listSelect": {
-                            "title": "List title"
+                            "title": "List title",
                             "items": [
                                 {
                                     "optionInfo": {

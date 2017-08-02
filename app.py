@@ -89,9 +89,11 @@ def handleTestIntent(req):
                 },
                 "richResponse": {
                     "items": [
-                        "simpleResponse": {
-                            "textToSpeech": "Please select an animal."
-                            "dislaytext": "Please select an animal."
+                        {
+                            "simpleResponse": {
+                                "textToSpeech": "Please select an animal."
+                                "dislaytext": "Please select an animal."
+                            }
                         }
                     ]
                 }

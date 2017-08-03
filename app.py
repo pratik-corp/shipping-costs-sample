@@ -65,7 +65,17 @@ def handleTestIntentNew(req):
                         "@type": "type.googleapis.com/google.actions.v2.TestIntentSpec",
                         "test_input": "hello world!"
                     }
-                },                
+                },
+                "richResponse": {
+                    "items": [
+                        {
+                            "simpleResponse": {
+                                "textToSpeech": "should I send it to your phone?",
+                                "dislaytext": "should I send it to your phone?"
+                            }
+                        }
+                    ]
+                }
             }
         },
         "source": "apiai-test_intent_new",

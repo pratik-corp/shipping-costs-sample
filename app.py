@@ -41,23 +41,34 @@ def webhook():
     r.headers['Content-Type'] = 'application/json'
     return r
 
-def handleShippingRequest(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    zone = parameters.get("shipping-zone")
+def makeWebhookResult(req):
+    if req.get("result").get("action") == "shipping.cost":
+        return handleShippingRequest(req)
+    elif req.get("result").get("action") == "test_intent":
+        return handleTestIntentNew(req)
+    else:    
+        print("result action:")
+        print(req.get("result").get("action"))
+        return {
+            "speech": "webhook backup response",
+            "displayText": "webhook backup response",
+            "source": "apiai-backup"
+        }
 
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
-
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
-
-    print("Response:")
-    print(speech)
-
+def handleTestIntentNew(req):
     return {
-        "speech": speech,
-        "displayText": speech,
-        # "contextOut": [],
-        "source": "apiai-shipping"
+        "data": {
+            "google": {
+                "systemIntent": {
+                    "intent": "actions.intent.TEST_INTENT",
+                    "data": {
+                        "@type": "type.googleapis.com/google.actions.v2.TestIntentSpec",
+                        "test_input": "hello world!"
+                    }
+                },                
+            }
+        },
+        "source": "apiai-test_intent_new",
     }
 
 def handleTestIntent(req):
@@ -103,21 +114,24 @@ def handleTestIntent(req):
         "source": "apiai-test_input",
     }
 
-def makeWebhookResult(req):
-    if req.get("result").get("action") == "shipping.cost":
-        return handleShippingRequest(req)
-    elif req.get("result").get("action") == "test_intent":
-        return handleTestIntent(req)
-    else:    
-        print("result action:")
-        print(req.get("result").get("action"))
-        return {
-            "speech": "webhook backup response",
-            "displayText": "webhook backup response",
-            "source": "apiai-backup"
-        }
-    
+def handleShippingRequest(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    zone = parameters.get("shipping-zone")
 
+    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+
+    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
+
+    print("Response:")
+    print(speech)
+
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "contextOut": [],
+        "source": "apiai-shipping"
+    }
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))

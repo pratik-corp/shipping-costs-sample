@@ -50,8 +50,8 @@ def makeWebhookResult(req):
         print("result action:")
         print(req.get("result").get("action"))
         return {
-            "speech": "webhook backup response",
-            "displayText": "webhook backup response",
+            "speech": "Not an implemented action.",
+            "displayText": "Not an implemented action",
             "source": "apiai-backup"
         }
 

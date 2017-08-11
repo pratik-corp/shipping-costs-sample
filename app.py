@@ -46,7 +46,7 @@ def makeWebhookResult(req):
         return handleShippingRequest(req)
     elif req.get("result").get("action") == "test_intent":
         return handleTestIntentNew(req)
-    elif req.get("result").get("action") == "request_notification":
+    elif req.get("result").get("action") == "input.unknown":
         return handleNotificationRequest(req)
     else:    
         print("result action:")
@@ -84,15 +84,18 @@ def handleTestIntentNew(req):
     }
 
 def handleNotificationRequest(req):
+    # check for notif intent in req.
     return {
         "data": {
             "google": {
                 "richResponse": {
                     "items": [
                         {
-                            "simpleResponse": {
-                                "textToSpeech": "Notification tap response from agent webhook",
-                                "dislaytext": "Notification tap response from agent webhook"
+                            "basicCard": {
+                                "image": {
+                                    "url": "http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg",
+                                    "accessibilityText": "cat image"
+                                }
                             }
                         }
                     ]

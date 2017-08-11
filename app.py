@@ -91,6 +91,12 @@ def handleNotificationRequest(req):
                 "richResponse": {
                     "items": [
                         {
+                            "simpleResponse": {
+                                "textToSpeech": "Here are some cat pictures",
+                                "dislaytext": "Here are some cat pictures"
+                            }
+                        },
+                        {
                             "basicCard": {
                                 "image": {
                                     "url": "http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg",

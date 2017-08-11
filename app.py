@@ -85,31 +85,38 @@ def handleTestIntentNew(req):
 
 def handleNotificationRequest(req):
     # check for notif intent in req.
-    return {
-        "data": {
-            "google": {
-                "richResponse": {
-                    "items": [
-                        {
-                            "simpleResponse": {
-                                "textToSpeech": "Here are some cat pictures",
-                                "dislaytext": "Here are some cat pictures"
-                            }
-                        },
-                        {
-                            "basicCard": {
-                                "image": {
-                                    "url": "http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg",
-                                    "accessibilityText": "cat image"
+    if req.get("result").get("resolvedQuery") == "actions_intent_TEST_INTENT":
+        return {
+            "data": {
+                "google": {
+                    "richResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "Here are some cat pictures",
+                                    "dislaytext": "Here are some cat pictures"
+                                }
+                            },
+                            {
+                                "basicCard": {
+                                    "image": {
+                                        "url": "http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg",
+                                        "accessibilityText": "cat image"
+                                    }
                                 }
                             }
-                        }
-                    ]
+                        ]
+                    }
                 }
-            }
-        },
-        "source": "apiai-notif_response",
-    }
+            },
+            "source": "apiai-notif_response",
+        }
+    else:
+        return {
+            "speech": "Sorry, I don't understand too many queries yet.",
+            "displayText": "Sorry, I don't understand too many queries yet.",
+            "source": "apiai-fallback"
+        }
 def handleTestIntent(req):
     return {
         "data": {

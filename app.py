@@ -46,6 +46,8 @@ def makeWebhookResult(req):
         return handleShippingRequest(req)
     elif req.get("result").get("action") == "test_intent":
         return handleTestIntentNew(req)
+    elif req.get("result").get("action") == "request_notification":
+        return handleNotificationRequest(req)
     else:    
         print("result action:")
         print(req.get("result").get("action"))
@@ -81,6 +83,24 @@ def handleTestIntentNew(req):
         "source": "apiai-test_intent_new",
     }
 
+def handleNotificationRequest(req):
+    return {
+        "data": {
+            "google": {
+                "richResponse": {
+                    "items": [
+                        {
+                            "simpleResponse": {
+                                "textToSpeech": "Notification tap response from agent webhook",
+                                "dislaytext": "Notification tap response from agent webhook"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        "source": "apiai-notif_response",
+    }
 def handleTestIntent(req):
     return {
         "data": {

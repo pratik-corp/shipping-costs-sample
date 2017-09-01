@@ -62,10 +62,10 @@ def handleTestIntentNew(req):
         "data": {
             "google": {
                 "systemIntent": {
-                    "intent": "actions.intent.TEST_INTENT",
+                    "intent": "actions.intent.NEW_SURFACE",
                     "data": {
-                        "@type": "type.googleapis.com/google.actions.v2.TestIntentSpec",
-                        "test_input": "hello world!"
+                        "@type": "type.googleapis.com/google.actions.v2.NewSurfaceValueSpec",
+                        "capabilities": [ "actions.capability.SCREEN_OUTPUT" ]
                     }
                 },
                 "richResponse": {
